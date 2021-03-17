@@ -14,6 +14,7 @@ public class Animal {
     private String city;
     private String state;
     private Species species;
+    private String description;
 
 
 }
