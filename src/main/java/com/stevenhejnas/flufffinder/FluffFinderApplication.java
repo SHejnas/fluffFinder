@@ -8,6 +8,7 @@ public class FluffFinderApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FluffFinderApplication.class, args);
+
 	}
 
 }
