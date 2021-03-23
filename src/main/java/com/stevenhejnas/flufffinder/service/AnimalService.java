@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,11 +36,15 @@ public class AnimalService {
     public Optional<List<Animal>> getAllDogs(){
         return animalRepository.findBySpecies(Species.DOG);
     }
-//    public Optional<Animal> updateAnimal(Integer id, Animal animal){
-//        Optional<Animal> optionalAnimal = animalRepository.findById(id);
-//        if(optionalAnimal.isPresent()){
-//            animalRepository.save(animal);
-//        }
-//        return optionalAnimal;
-//    }
+
+    public Optional<Animal> updateAnimal(Integer id, Animal animal){
+        Optional<Animal> optionalAnimal = animalRepository.findById(id);
+        if(optionalAnimal.isPresent()){
+            animalRepository.save(animal);
+        }
+        return animalRepository.findById(id);
+    }
+    public void deleteAnimal(Integer id) {
+        animalRepository.deleteById(id);
+    }
 }
