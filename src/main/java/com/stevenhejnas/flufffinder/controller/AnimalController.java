@@ -40,10 +40,12 @@ public class AnimalController {
     public Animal createAnimal(@RequestBody Animal animal){
         return animalService.insertAnimal(animal);
     }
-    //@PatchMapping
-//    @PutMapping("/{id}")
-//    public Optional<Animal> updateAnimal(@PathVariable Integer id, @RequestBody Animal animal){
-//        return animalService.updateAnimal(id, animal);
-//    }
-
+    @PutMapping("/{id}")
+    public Optional<Animal> updateAnimal(@PathVariable Integer id, @RequestBody Animal animal){
+        return animalService.updateAnimal(id, animal);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteAnimal(@PathVariable Integer id){
+        animalService.deleteAnimal(id);
+    }
 }
