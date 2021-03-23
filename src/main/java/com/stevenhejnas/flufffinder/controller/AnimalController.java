@@ -25,7 +25,7 @@ public class AnimalController {
         return animalService.getAllAnimal();
     }
     @GetMapping("/{id}")
-    public Optional<Animal> getAnimalById(@PathVariable Integer id){
+    public Animal getAnimalById(@PathVariable Integer id){
         return animalService.getAnimalById(id);
     }
     @GetMapping("/cats")
@@ -41,7 +41,7 @@ public class AnimalController {
         return animalService.insertAnimal(animal);
     }
     @PutMapping("/{id}")
-    public Optional<Animal> updateAnimal(@PathVariable Integer id, @RequestBody Animal animal){
+    public Animal updateAnimal(@PathVariable Integer id, @RequestBody Animal animal){
         return animalService.updateAnimal(id, animal);
     }
     @DeleteMapping("/{id}")

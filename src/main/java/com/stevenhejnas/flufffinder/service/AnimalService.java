@@ -1,6 +1,7 @@
 package com.stevenhejnas.flufffinder.service;
 
 
+import com.stevenhejnas.flufffinder.PetNotFoundException;
 import com.stevenhejnas.flufffinder.Species;
 import com.stevenhejnas.flufffinder.model.Animal;
 import com.stevenhejnas.flufffinder.persistence.AnimalRepository;
@@ -24,8 +25,9 @@ public class AnimalService {
     public List<Animal> getAllAnimal(){
         return (List<Animal>) animalRepository.findAll();
     }
-    public Optional<Animal> getAnimalById(Integer id){
-        return animalRepository.findById(id);
+    public Animal getAnimalById(Integer id){
+        return animalRepository.findById(id)
+                .orElseThrow(() -> new PetNotFoundException(id));
     }
     public Animal insertAnimal(Animal animal){
         return animalRepository.save(animal);
@@ -37,12 +39,10 @@ public class AnimalService {
         return animalRepository.findBySpecies(Species.DOG);
     }
 
-    public Optional<Animal> updateAnimal(Integer id, Animal animal){
-        Optional<Animal> optionalAnimal = animalRepository.findById(id);
-        if(optionalAnimal.isPresent()){
-            animalRepository.save(animal);
-        }
-        return animalRepository.findById(id);
+    public Animal updateAnimal(Integer id, Animal animal){
+        animalRepository.findById(id)
+                .orElseThrow(()-> new PetNotFoundException(id));
+            return animalRepository.save(animal);
     }
     public void deleteAnimal(Integer id) {
         animalRepository.deleteById(id);
